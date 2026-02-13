@@ -1,0 +1,64 @@
+# =========================
+# OS
+# =========================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# =========================
+# Logs
+# =========================
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =========================
+# Dependency directories
+# =========================
+node_modules/
+vendor/
+
+# =========================
+# Build outputs
+# =========================
+dist/
+build/
+out/
+coverage/
+
+# =========================
+# Environment files
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# IDE / Editor
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# =========================
+# Temporary files
+# =========================
+tmp/
+temp/
+.cache/
+
+# =========================
+# Testing
+# =========================
+coverage/
+*.lcov
+
+# =========================
+# Package manager locks
+# =========================
+# (Keep lockfiles in real projects.
+# For blueprint repos, this usually doesn't apply.)
