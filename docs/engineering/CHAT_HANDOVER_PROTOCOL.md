@@ -106,7 +106,7 @@ Releases optional for PATCH, recommended for MINOR+.
 # 5. Current Repository State
 
 Latest Tag:
-v1.8.8
+v1.8.9
 
 Governance Baseline Includes:
 
@@ -123,6 +123,7 @@ Governance Baseline Includes:
 - Deterministic PR metadata flow (Conventional titles + narrative body + squash subject/body parity)
 - PR helper usage formally documented in PR_HELPER_GUIDE.md
 - PR helper doctor strengthened with governance PASS/WARN/FAIL validation checks
+- PR helper commit corrected to staged-only behavior with explicit unstaged/no-staged failure conditions
 - Branch protection enabled
 - PR-based workflow verified
 - CHAT_HANDOVER_PROTOCOL

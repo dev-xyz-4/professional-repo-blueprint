@@ -347,8 +347,17 @@ cmd_commit() {
 
   [[ -n "$wf" ]] || { err "--workflow is required"; exit 1; }
   require_workflow "$wf"
-  require_clean_git "$allow_dirty"
   require_not_main
+
+  if ! git diff --quiet; then
+    err "Unstaged changes detected. Run git add before commit."
+    exit 1
+  fi
+
+  if git diff --cached --quiet; then
+    err "No staged changes to commit."
+    exit 1
+  fi
 
   if [[ -z "$message" ]]; then
     [[ -n "$subject" ]] || { err "--subject is required when --message is not provided"; exit 1; }
@@ -362,11 +371,6 @@ cmd_commit() {
     fi
   fi
 
-  git add -A
-  if git diff --cached --quiet; then
-    err "no staged changes to commit (after git add -A)."
-    exit 1
-  fi
   git commit -m "$message"
 
   log "Committed: $message"

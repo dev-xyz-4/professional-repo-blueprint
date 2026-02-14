@@ -51,7 +51,8 @@ scripts/quality/pr-helper.sh detect
 - `branch`:
   Create a workflow-aligned branch name (`minor/<slug>` or `feature/<slug>`).
 - `commit`:
-  Create a conventional commit message and commit staged changes.
+  Create a conventional commit message and commit staged changes only.
+  `commit` does not auto-stage files.
 - `push`:
   Push current branch to origin with upstream tracking.
 - `pr-create`:
@@ -144,13 +145,16 @@ Notes:
 # 1) Create branch
 scripts/quality/pr-helper.sh branch --workflow minor-change --slug handover-baseline-sync
 
-# 2) Commit
+# 2) Stage intended files
+git add docs/engineering/CHAT_HANDOVER_PROTOCOL.md docs/bmad/notes/minor-changes.md
+
+# 3) Commit (staged-only)
 scripts/quality/pr-helper.sh commit --workflow minor-change --subject "sync handover baseline"
 
-# 3) Push
+# 4) Push
 scripts/quality/pr-helper.sh push
 
-# 4) Create PR
+# 5) Create PR
 scripts/quality/pr-helper.sh pr-create \
   --workflow minor-change \
   --type docs \
@@ -163,13 +167,13 @@ scripts/quality/pr-helper.sh pr-create \
   --governance "minor log and handover updates included" \
   --validation "manual review + helper guardrail checks"
 
-# 5) Merge deterministically
+# 6) Merge deterministically
 scripts/quality/pr-helper.sh pr-merge
 
-# 6) Sync local main
+# 7) Sync local main
 scripts/quality/pr-helper.sh sync-main
 
-# 7) Optional tag (explicit only)
+# 8) Optional tag (explicit only)
 scripts/quality/pr-helper.sh tag --tag vX.Y.Z
 ```
 
@@ -179,13 +183,16 @@ scripts/quality/pr-helper.sh tag --tag vX.Y.Z
 # 1) Create branch
 scripts/quality/pr-helper.sh branch --workflow feature-implementation --slug data-export
 
-# 2) Commit
+# 2) Stage intended files
+git add src/... docs/bmad/features/data-export/04-deliver.md
+
+# 3) Commit (staged-only)
 scripts/quality/pr-helper.sh commit --workflow feature-implementation --scope data-export --subject "implement deliver contract"
 
-# 3) Push
+# 4) Push
 scripts/quality/pr-helper.sh push
 
-# 4) Create PR
+# 5) Create PR
 scripts/quality/pr-helper.sh pr-create \
   --workflow feature-implementation \
   --type feat \
@@ -198,10 +205,10 @@ scripts/quality/pr-helper.sh pr-create \
   --governance "deliver/spec alignment verified" \
   --validation "tests + review checklist complete"
 
-# 5) Merge
+# 6) Merge
 scripts/quality/pr-helper.sh pr-merge
 
-# 6) Sync
+# 7) Sync
 scripts/quality/pr-helper.sh sync-main
 ```
 
@@ -218,6 +225,18 @@ Resolution:
 
 Doctor behavior:
 - Usually reported as `WARN` in diagnostics mode.
+
+### Commit staging enforcement
+Error patterns:
+- `Unstaged changes detected. Run git add before commit.`
+- `No staged changes to commit.`
+
+Resolution:
+- Stage intended files first, then run commit:
+```bash
+git add <intended-files>
+scripts/quality/pr-helper.sh commit --workflow <workflow> --subject "<summary>"
+```
 
 ### `gh` auth issues
 Error pattern:
