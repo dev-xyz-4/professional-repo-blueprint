@@ -3,34 +3,34 @@
 This document is **deprecated** and kept for historical context only.
 > Superseded by `docs/bmad/guides/BMAD_SETUP_Lean_Integration.md`.
 
-## Ziel dieses Dokuments
+## Purpose of this document
 
-Dieses Dokument beschreibt, wie die **BMAD Method** als **leichtgewichtetes Prozess-Framework**
-in dieses Repository integriert wird.
+This document describes how the **BMAD Method** is integrated as a **lightweight process framework**
+into this repository.
 
-BMAD wird hier **nicht als vollständiges Framework oder Dogma** verwendet,
-sondern als strukturierter Workflow zur Erzeugung stabiler **Artefakte (Markdown)**,
-die anschließend von Codex (VS Code Plugin) implementiert werden.
+BMAD is **not used here as a complete framework or dogma**,
+but as a structured workflow for producing stable **artifacts (Markdown)**,
+which are then implemented by Codex (VS Code Plugin).
 
-Der Fokus liegt auf:
-- klarer Trennung von Denken und Implementieren
-- reproduzierbaren Dokumenten statt Chat-Verlauf
-- minimalem Overhead
-
----
-
-## Grundprinzip
-
-- **BMAD = Struktur & Artefakte**
-- **VS Code + Codex Plugin = Umsetzung**
-- **Markdown-Dateien = Single Source of Truth**
-
-Architektur-, Analyse- und Entscheidungsarbeit findet **außerhalb** des Plugins statt
-und wird als `.md` im Repository versioniert.
+The focus is on:
+- clear separation of thinking and implementation
+- reproducible documents instead of chat history
+- minimal overhead
 
 ---
 
-## Vorgeschlagene Verzeichnisstruktur
+## Core principle
+
+- **BMAD = structure & artifacts**
+- **VS Code + Codex Plugin = execution**
+- **Markdown files = single source of truth**
+
+Architecture, analysis, and decision work happens **outside** the plugin
+and is versioned as `.md` in the repository.
+
+---
+
+## Suggested directory structure
 
 ```text
 docs/

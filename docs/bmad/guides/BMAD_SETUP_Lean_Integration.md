@@ -1,42 +1,42 @@
 # BMAD Setup Guide (Lean Integration)
 
-> **Ziel:** BMAD als *Prozess-Framework* in diesem Repo nutzen (Workflows + Artefakte), ohne Overhead.  
-> **Prinzip:** Denken/Entscheiden wird als Markdown versioniert.  
-> Codex-Verhalten wird über `docs/bmad/guides/CODEX_WORKFLOW_POLICY.md` geregelt.
+> **Goal:** Use BMAD as a *process framework* in this repository (workflows + artifacts) with minimal overhead.  
+> **Principle:** Thinking/decision-making is versioned as Markdown.  
+> Codex behavior is governed by `docs/bmad/guides/CODEX_WORKFLOW_POLICY.md`.
 
 ---
 
-## 0) Kurzüberblick
+## 0) Quick Overview
 
-- **BMAD = Struktur & Artefakte** (Break → Model → Analyze → Deliver)
-- **Repo = Single Source of Truth** (Docs im Git, nicht im Chat-Verlauf)
-- **VS Code + Codex Plugin = Ausführung** (Code schreiben, refactoren, testen)
-- **Optional:** BMAD-CLI installieren, um Assets/Workflows schneller zu erzeugen (nicht zwingend)
-
----
-
-## 1) Installation (2 Varianten)
-
-### Variante A — Minimal (ohne BMAD-CLI) ✅ *empfohlen zum Start*
-Du nutzt BMAD als **Konzept + Dokumentstruktur**:
-
-1. Lege die Ordnerstruktur unter `docs/bmad/` an (siehe Abschnitt 2).
-2. Nutze die Templates (Abschnitt 3) oder erstelle die Dateien manuell.
-3. VS Code Codex-Verhalten und Implementierungs-Gating sind in `docs/bmad/guides/CODEX_WORKFLOW_POLICY.md` definiert.
-
-**Vorteil:** kein zusätzlicher Tooling-Overhead, sofort startklar.  
-**Nachteil:** du pflegst Templates/Ordner initial selbst.
+- **BMAD = structure & artifacts** (Break → Model → Analyze → Deliver)
+- **Repo = single source of truth** (docs in Git, not in chat history)
+- **VS Code + Codex Plugin = execution** (write code, refactor, test)
+- **Optional:** install BMAD CLI to generate assets/workflows faster (not required)
 
 ---
 
-### Variante B — Mit BMAD-CLI (optional) ⚙️
-Wenn du BMAD-Assets/Workflows aus dem offiziellen Repo übernehmen willst, installiere die CLI lokal.
+## 1) Installation (2 variants)
 
-**Voraussetzungen**
+### Variant A — Minimal (without BMAD CLI) ✅ *recommended to start*
+You use BMAD as a **concept + documentation structure**:
+
+1. Create the folder structure under `docs/bmad/` (see section 2).
+2. Use the templates (section 3) or create the files manually.
+3. VS Code Codex behavior and implementation gating are defined in `docs/bmad/guides/CODEX_WORKFLOW_POLICY.md`.
+
+**Advantage:** no additional tooling overhead, ready immediately.  
+**Disadvantage:** you maintain templates/folders yourself initially.
+
+---
+
+### Variant B — With BMAD CLI (optional) ⚙️
+If you want to adopt BMAD assets/workflows from the official repository, install the CLI locally.
+
+**Prerequisites**
 - Node.js **v20+**
-- Terminal im Repo-Root
+- Terminal in repo root
 
-**Install (projekt-spezifisch, empfohlen)**
+**Install (project-specific, recommended)**
 ```bash
 npx bmad-method install
 ```
@@ -46,13 +46,13 @@ npx bmad-method install
 npx bmad-method update
 ```
 
-> Hinweis: Die CLI ist **optional**. Für deinen Workflow (Docs → Implementierung) genügt oft Variante A.  
-> Falls die CLI bei dir andere Dateien/Ordner anlegt als unten beschrieben: nutze sie als „Quelle“,  
-> aber halte die Repo-Struktur in `docs/bmad/` stabil.
+> Note: The CLI is **optional**. For your workflow (docs → implementation), Variant A is often sufficient.  
+> If the CLI creates different files/folders than below, use it as a "source",  
+> but keep the repository structure in `docs/bmad/` stable.
 
 ---
 
-## 2) Vorgeschlagene `docs/bmad/`-Struktur
+## 2) Suggested `docs/bmad/` Structure
 
 ```text
 docs/
@@ -84,251 +84,251 @@ docs/
       decisions-log.md
 ```
 
-### Bedeutung der Ordner
+### Meaning of the folders
 
 #### `docs/bmad/00-project/`
-**Stabiler Kontext** über das bestehende Projekt (Brownfield-Fokus):
-- Was ist das Repo? Ziel/Scope?
-- Architektur-Skizze (Module, Datenflüsse)
-- Glossar (Begriffe, Abkürzungen)
-- Konventionen (Coding, Tests, Pfade)
+**Stable context** about the existing project (brownfield focus):
+- What is the repository? Goal/scope?
+- Architecture sketch (modules, data flows)
+- Glossary (terms, abbreviations)
+- Conventions (coding, tests, paths)
 
-**Zweck:** Codex und du habt eine „Basiswahrheit“, ohne jedes Mal alles neu zu erklären.
+**Purpose:** Codex and you share a "baseline truth" without re-explaining everything every time.
 
 ---
 
 #### `docs/bmad/features/<feature-name>/`
-BMAD-Artefakte pro Feature oder klar abgegrenztem Thema.
+BMAD artifacts per feature or clearly scoped topic.
 
-- `01-break.md` — Problem **zerlegen**, keine Lösung
-- `02-model.md` — konzeptionelles Modell (Daten, Zustände, Invarianten)
-- `03-analyze.md` — Optionen/Trade-offs, Entscheidungen, Risiken
-- `04-deliver.md` — **Implementationsvertrag** (API, Schritte, Akzeptanzkriterien)
-- `questions.md` — offene Punkte, die nicht geraten werden dürfen
-- `changelog.md` — was wurde am Artefakt geändert und warum
+- `01-break.md` — **decompose** the problem, no solution
+- `02-model.md` — conceptual model (data, states, invariants)
+- `03-analyze.md` — options/trade-offs, decisions, risks
+- `04-deliver.md` — **implementation contract** (API, steps, acceptance criteria)
+- `questions.md` — open points that must not be guessed
+- `changelog.md` — what changed in the artifact and why
 
-**Wichtig:** Für die Umsetzung ist `04-deliver.md` *die* Quelle.
+**Important:** For implementation, `04-deliver.md` is *the* source.
 
 ---
 
 #### `docs/bmad/templates/`
-Vorlagen, um Dokumente konsistent zu halten.  
-**Optional**, aber sehr hilfreich, wenn mehrere Features nach dem gleichen Pattern laufen.
+Templates to keep documents consistent.  
+**Optional**, but very helpful when multiple features follow the same pattern.
 
 ---
 
 #### `docs/bmad/notes/`
-Querschnittliche Notizen, die nicht in einzelne Features gehören:
-- große Entscheidungen (Decision Log)
-- verworfene Ideen
-- generelle offene Fragen
+Cross-cutting notes that do not belong to a single feature:
+- major decisions (decision log)
+- rejected ideas
+- general open questions
 
-**Zweck:** Feature-Artefakte bleiben schlank.
+**Purpose:** keep feature artifacts lean.
 
 ---
 
-## 3) Templates (Startpunkt)
+## 3) Templates (starting point)
 
-Lege diese Templates an (oder übernehme sie später aus BMAD):
+Create these templates (or import them later from BMAD):
 
 ### `templates/break.template.md`
-- Ziel / Nicht-Ziele
+- Goal / Non-goals
 - Inputs / Outputs
-- Randbedingungen
-- Risiken / Unknowns
-- Akzeptanz: „Wann ist das Problem korrekt verstanden?“
+- Constraints
+- Risks / Unknowns
+- Acceptance: "When is the problem correctly understood?"
 
 ### `templates/model.template.md`
-- Datenmodell / Strukturen
-- Zustände / Transitions
-- Invarianten
-- Schnittstellen (konzeptionell)
-- Failure-Modes
+- Data model / structures
+- States / transitions
+- Invariants
+- Interfaces (conceptual)
+- Failure modes
 
 ### `templates/analyze.template.md`
-- Ansatz A/B/C
-- Trade-offs (Performance, UX, Complexity, Extensibility)
-- Entscheidung + Begründung
-- Was wurde verworfen und warum?
+- Approach A/B/C
+- Trade-offs (performance, UX, complexity, extensibility)
+- Decision + rationale
+- What was rejected and why?
 
 ### `templates/deliver.template.md`
-- Scope (MVP vs später)
-- File-/Folder-Targets
-- API/Signaturen
-- Implementationsreihenfolge
-- Tests/Checks
-- Akzeptanzkriterien (Definition of Done)
+- Scope (MVP vs later)
+- File/folder targets
+- API/signatures
+- Implementation order
+- Tests/checks
+- Acceptance criteria (definition of done)
 
 ---
 
-## 4) Welche Teile aus dem BMAD-Repo verwenden wir – und warum?
+## 4) Which parts of the BMAD repo do we use — and why?
 
-### Verwendet (Core, Einstieg)
-1. **BMAD-Phasen B/M/A/D**  
-   - Grund: zwingt explizite Entscheidungen, reduziert Drift.
-2. **Artefakt-First** (Docs im Repo statt Chat)  
-   - Grund: versionierbar, nach Wochen reproduzierbar.
-3. **Quick vs Full Planning (Prinzip, nicht zwingend CLI)**  
-   - Quick: kleine Änderungen mit wenig Overhead  
-   - Full: größere Features mit klaren Deliverables
-4. **Brownfield-Denken** (`00-project/` als Kontextbasis)  
-   - Grund: gewachsene Projekte brauchen „shared understanding“.
+### Used (core, entry)
+1. **BMAD phases B/M/A/D**  
+   - Reason: forces explicit decisions, reduces drift.
+2. **Artifact-first** (docs in repo instead of chat)  
+   - Reason: versionable, reproducible weeks later.
+3. **Quick vs Full planning (principle, not necessarily CLI)**  
+   - Quick: small changes with little overhead  
+   - Full: larger features with clear deliverables
+4. **Brownfield mindset** (`00-project/` as context baseline)  
+   - Reason: mature projects need shared understanding.
 
-### Vorläufig **nicht** verwendet
-1. **Builder / Custom Agent-System**  
-   - Grund: Overhead; erst sinnvoll, wenn du konstant gleiche Workflows automatisierst.
-2. **Enterprise-Module (z. B. TEA/Test-Architektur)**  
-   - Grund: erst einführen, wenn QA/Test-Gates wirklich der Bottleneck sind.
-3. **Strikte Rollen-Simulation (PM/Architect/QA als separate Agents)**  
-   - Grund: du kannst diese Rollen *als Abschnitte im Dokument* abbilden; später optional trennen.
-4. **Maximal automatisierte Workflow-Ketten**  
-   - Grund: zuerst „manuell stabilisieren“, dann automatisieren.
+### Not used for now
+1. **Builder / custom agent system**  
+   - Reason: overhead; only useful once you automate repeated workflows.
+2. **Enterprise modules (e.g., TEA/test architecture)**  
+   - Reason: introduce only when QA/test gates are truly the bottleneck.
+3. **Strict role simulation (PM/Architect/QA as separate agents)**  
+   - Reason: these roles can be represented as document sections; separate later if needed.
+4. **Fully automated workflow chains**  
+   - Reason: stabilize manually first, then automate.
 
 ---
 
-## 5) Arbeitsweise mit VS Code + Codex Plugin (entscheidend)
+## 5) Working style with VS Code + Codex Plugin (critical)
 
-### Grundregel
-Dieses Kapitel beschreibt die Integration mit dem VS Code Plugin.
-Normative Codex-Regeln stehen in `docs/bmad/guides/CODEX_WORKFLOW_POLICY.md`.
+### Ground rule
+This chapter describes integration with the VS Code plugin.
+Normative Codex rules are in `docs/bmad/guides/CODEX_WORKFLOW_POLICY.md`.
 
-**Standard-Anweisung (Copy/Paste)**
-> Implementiere strikt nach `docs/bmad/features/<feature>/04-deliver.md`.  
-> Triff keine zusätzlichen Annahmen.  
-> Bei fehlenden Informationen gilt das Verhalten aus  
+**Standard instruction (copy/paste)**
+> Implement strictly according to `docs/bmad/features/<feature>/04-deliver.md`.  
+> Make no additional assumptions.  
+> If information is missing, follow behavior from  
 > `docs/bmad/guides/CODEX_WORKFLOW_POLICY.md`.
 
-### Praktische Konsequenzen
-- Keine Architektur-Diskussionen im Plugin-Chat
-- Keine „stillen“ Scope-Erweiterungen
-- Jede Entscheidung landet in `03-analyze.md` (oder `notes/decisions-log.md`)
-- Jede Implementationsänderung wird in `04-deliver.md` reflektiert (wenn sie das Ziel verändert)
-- Für TS-Fehler-Stabilisierung optional die Routine aus
-  `docs/bmad/guides/TS_AUDIT_ROUTINE.md` nutzen (Diagnose, nicht normative Regel).
+### Practical consequences
+- No architecture discussions in plugin chat
+- No silent scope expansions
+- Every decision goes into `03-analyze.md` (or `notes/decisions-log.md`)
+- Every implementation change is reflected in `04-deliver.md` (if it changes the goal)
+- For TS error stabilization, optionally use
+  `docs/bmad/guides/TS_AUDIT_ROUTINE.md` (diagnostic, not normative)
 
-### „Clean Context“-Trick
-Wenn ein Feature groß wird:
-- Plugin bekommt **nur** `04-deliver.md` (+ 1–2 referenzierte Dateien)
-- Der Rest (B/M/A) bleibt im Repo, nicht im Plugin-Kontext
-
----
-
-## 6) Betriebsregeln (leichtgewichtig, aber verbindlich)
-
-1. **Single Source of Truth:** `04-deliver.md`
-2. **Keine Annahmen ohne Dokumentation:** offene Punkte → `questions.md`
-3. **Änderungen am Plan sind normal:** aber dann Artefakte updaten, nicht „im Kopf“ ändern
-4. **BMAD nur dort, wo es sich lohnt:** neue Komplexität, echte Trade-offs, langfristige Evolvierbarkeit
-5. **Commit-Disziplin:** `docs/bmad/` wird versioniert, sonst verliert BMAD den Hauptnutzen
+### "Clean context" trick
+When a feature grows large:
+- Plugin receives **only** `04-deliver.md` (+ 1–2 referenced files)
+- The rest (B/M/A) stays in the repo, not in plugin context
 
 ---
 
-## 7) Start-Checklist (10 Minuten)
+## 6) Operating rules (lightweight, but binding)
 
-- [ ] `docs/bmad/guides/BMAD_SETUP_Lean_Integration.md` (dieses Dokument) committen
-- [ ] `docs/bmad/00-project/` anlegen + `project-overview.md` grob füllen
-- [ ] `docs/bmad/templates/` anlegen (4 Templates)
-- [ ] Für das nächste Feature: `docs/bmad/features/<name>/04-deliver.md` erstellen
-- [ ] Für Codex die Regeln aus `docs/bmad/guides/CODEX_WORKFLOW_POLICY.md` anwenden
+1. **Single source of truth:** `04-deliver.md`
+2. **No assumptions without documentation:** open points → `questions.md`
+3. **Plan changes are normal:** but update artifacts, not just your head
+4. **Use BMAD where it pays off:** new complexity, real trade-offs, long-term evolution
+5. **Commit discipline:** version `docs/bmad/`, otherwise BMAD loses its main value
+
+---
+
+## 7) Start checklist (10 minutes)
+
+- [ ] Commit `docs/bmad/guides/BMAD_SETUP_Lean_Integration.md` (this document)
+- [ ] Create `docs/bmad/00-project/` + roughly fill `project-overview.md`
+- [ ] Create `docs/bmad/templates/` (4 templates)
+- [ ] For the next feature: create `docs/bmad/features/<name>/04-deliver.md`
+- [ ] Apply Codex rules from `docs/bmad/guides/CODEX_WORKFLOW_POLICY.md`
 
 ---
 
 ## 8) Troubleshooting & FAQ
 
-### Wann nutze ich „Quick“ vs. „Full“ BMAD?
+### When do I use "Quick" vs "Full" BMAD?
 
 **Quick (minimal):**
-- kleine, klar begrenzte Änderungen
-- wenig bis keine Architektur-Entscheidungen
-- bestehende Modelle werden nicht verändert
+- small, clearly scoped changes
+- few or no architecture decisions
+- existing models are not changed
 
-→ Oft reicht **nur `04-deliver.md`** (+ evtl. ein kurzes `01-break.md`).
+→ Often **only `04-deliver.md`** is enough (+ maybe a short `01-break.md`).
 
 **Full (B/M/A/D):**
-- neue strukturelle Logik
-- mehrere Lösungswege möglich
-- spätere Erweiterbarkeit relevant
-- Risiko von Fehlentscheidungen
+- new structural logic
+- multiple solution paths are possible
+- future extensibility matters
+- risk of bad decisions
 
-→ Alle vier Phasen explizit dokumentieren.
-
----
-
-### Was tun, wenn während der Implementierung Infos fehlen?
-
-Das konkrete Stop- und Klärungsverhalten von Codex ist in
-`docs/bmad/guides/CODEX_WORKFLOW_POLICY.md` definiert.
-
-Für die Dokumentation gilt:
-1. Fehlende Punkte werden in `docs/bmad/features/<feature>/questions.md` ergänzt.
-2. Entscheidungen werden in `03-analyze.md` nachgetragen.
-3. `04-deliver.md` wird bei Bedarf aktualisiert.
+→ Document all four phases explicitly.
 
 ---
 
-### Wann muss `04-deliver.md` aktualisiert werden?
+### What to do if information is missing during implementation?
 
-Immer dann, wenn sich eines davon ändert:
-- Scope
-- API / Signaturen
-- Reihenfolge der Implementierung
-- Akzeptanzkriterien
-- Definition of Done
-
-**Faustregel:**  
-Wenn der Code etwas anderes tut als geplant → `04-deliver.md` ist veraltet.
-
----
-
-### Darf Codex im Plugin Entscheidungen treffen?
-
-Die normative Antwort steht in
+Specific stop/clarification behavior for Codex is defined in
 `docs/bmad/guides/CODEX_WORKFLOW_POLICY.md`.
 
-Dieser Setup-Guide bleibt beschreibend; Entscheidungen werden in `03-analyze.md` dokumentiert.
+For documentation:
+1. Add missing points to `docs/bmad/features/<feature>/questions.md`.
+2. Record decisions in `03-analyze.md`.
+3. Update `04-deliver.md` if needed.
 
 ---
 
-### Was, wenn BMAD „zu schwer“ wirkt?
+### When must `04-deliver.md` be updated?
 
-Dann wird es **zu breit eingesetzt**.
+Whenever one of these changes:
+- scope
+- API / signatures
+- implementation order
+- acceptance criteria
+- definition of done
 
-BMAD ist kein Standard für:
-- Bugfixes
-- kosmetische Änderungen
-- reine Umbenennungen
-
-BMAD ist ein Werkzeug für **neue Komplexität**.
-
----
-
-### Kann ich BMAD später wieder entfernen?
-
-Ja.
-
-BMAD erzeugt **nur Markdown-Artefakte**.
-Kein Code ist davon abhängig.
-
-Worst Case:
-- Du behältst gute Dokumentation.
-- Du lässt den Prozess fallen.
+**Rule of thumb:**  
+If code does something different than planned → `04-deliver.md` is outdated.
 
 ---
 
-## 9) Commit- & Änderungsregeln für BMAD-Artefakte
+### May Codex make decisions in the plugin?
 
-BMAD funktioniert nur, wenn die Dokumente **versioniert, nachvollziehbar und stabil** sind.
+The normative answer is in
+`docs/bmad/guides/CODEX_WORKFLOW_POLICY.md`.
 
-### Grundregeln
-1. **`docs/bmad/` wird immer mitcommittet**
-2. Artefakte sind Teil der Code-Review-Grundlage
-3. Änderungen am Plan sind normal – **stille Änderungen nicht**
+This setup guide remains descriptive; decisions are documented in `03-analyze.md`.
 
 ---
 
-### Empfohlene Commit-Struktur
+### What if BMAD feels "too heavy"?
 
-#### Änderungen an BMAD-Dokumenten
+Then it is being **used too broadly**.
+
+BMAD is not a default for:
+- bug fixes
+- cosmetic changes
+- pure renaming
+
+BMAD is a tool for **new complexity**.
+
+---
+
+### Can I remove BMAD later?
+
+Yes.
+
+BMAD creates **Markdown artifacts only**.
+No code depends on it.
+
+Worst case:
+- You keep good documentation.
+- You drop the process.
+
+---
+
+## 9) Commit & Change Rules for BMAD Artifacts
+
+BMAD works only when documents are **versioned, traceable, and stable**.
+
+### Ground rules
+1. **Always commit `docs/bmad/`**
+2. Artifacts are part of the code review baseline
+3. Plan changes are normal - **silent changes are not**
+
+---
+
+### Recommended commit structure
+
+#### Changes to BMAD documents
 ```text
 docs(bmad): clarify deliver scope for <feature>
 docs(bmad): add decision on data model trade-offs
