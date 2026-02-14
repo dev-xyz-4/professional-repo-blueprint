@@ -149,22 +149,15 @@ default_commit_type_for_workflow() {
 }
 
 default_pr_title_for() {
-  local wf="$1"
-  local slug="$2"
-  case "$wf" in
-    minor-change)
-      echo "minor(docs): $slug"
-      ;;
-    feature-implementation)
-      echo "feat($slug): implement workflow updates"
-      ;;
-    documentation-only)
-      echo "docs(bmad): $slug"
-      ;;
-    *)
-      echo "chore: $slug"
-      ;;
-  esac
+  local type="$1"
+  local scope="$2"
+  local summary="$3"
+  echo "${type}(${scope}): ${summary}"
+}
+
+is_conventional_title() {
+  local title="$1"
+  [[ "$title" =~ ^[a-z]+\([a-zA-Z0-9._/-]+\):[[:space:]].+ ]]
 }
 
 print_help() {
@@ -179,7 +172,9 @@ Usage:
   pr-helper.sh branch --workflow <workflow> --slug <slug> [--allow-dirty]
   pr-helper.sh commit --workflow <workflow> [--type <type>] [--scope <scope>] (--subject <text> | --message <msg>) [--allow-dirty]
   pr-helper.sh push [--allow-dirty]
-  pr-helper.sh pr-create --workflow <workflow> --slug <slug> [--base <branch>] [--title <title>] [--allow-dirty]
+  pr-helper.sh pr-create --workflow <workflow> --type <type> --scope <scope> --summary <summary> \
+    --rationale <why> --files <file1,file2,...> --out-of-scope <text> --versioning <semver-note> \
+    --governance <text> --validation <text> [--base <branch>] [--allow-dirty]
   pr-helper.sh pr-merge [--allow-dirty]
   pr-helper.sh sync-main [--allow-dirty]
   pr-helper.sh tag --tag vX.Y.Z [--allow-dirty]
@@ -193,7 +188,14 @@ Examples:
   pr-helper.sh branch --workflow minor-change --slug handover-baseline-sync
   pr-helper.sh commit --workflow minor-change --subject "sync handover baseline"
   pr-helper.sh push
-  pr-helper.sh pr-create --workflow minor-change --slug handover-baseline-sync
+  pr-helper.sh pr-create --workflow minor-change --type docs --scope governance \
+    --summary "align handover baseline with latest patch state" \
+    --rationale "prevent drift between handover and minor-change log" \
+    --files "docs/engineering/CHAT_HANDOVER_PROTOCOL.md,docs/bmad/notes/minor-changes.md" \
+    --out-of-scope "no governance policy changes" \
+    --versioning "PATCH expected (documentation hygiene only)" \
+    --governance "minor log updated; handover baseline synchronized" \
+    --validation "manual doc review + helper command checks"
   pr-helper.sh pr-merge
   pr-helper.sh sync-main
   pr-helper.sh tag --tag v1.9.0
@@ -311,11 +313,20 @@ cmd_push() {
 }
 
 cmd_pr_create() {
-  local wf="" slug="" base="main" title="" allow_dirty="false"
+  local wf="" slug="" type="" scope="" summary="" rationale="" files="" out_of_scope="" versioning_note="" governance_note="" validation_note="" base="main" title="" allow_dirty="false"
   while [[ $# -gt 0 ]]; do
     case "$1" in
       --workflow) wf="$2"; shift 2 ;;
       --slug) slug="$2"; shift 2 ;;
+      --type) type="$2"; shift 2 ;;
+      --scope) scope="$2"; shift 2 ;;
+      --summary) summary="$2"; shift 2 ;;
+      --rationale) rationale="$2"; shift 2 ;;
+      --files) files="$2"; shift 2 ;;
+      --out-of-scope) out_of_scope="$2"; shift 2 ;;
+      --versioning) versioning_note="$2"; shift 2 ;;
+      --governance) governance_note="$2"; shift 2 ;;
+      --validation) validation_note="$2"; shift 2 ;;
       --base) base="$2"; shift 2 ;;
       --title) title="$2"; shift 2 ;;
       --allow-dirty) allow_dirty="true"; shift ;;
@@ -324,35 +335,65 @@ cmd_pr_create() {
   done
 
   [[ -n "$wf" ]] || { err "--workflow is required"; exit 1; }
-  [[ -n "$slug" ]] || { err "--slug is required"; exit 1; }
+  [[ -n "$summary" ]] || {
+    err "--summary is required (human-readable text, not just slug)."
+    log "Migration: use --summary plus --type/--scope for Conventional Commit title generation."
+    print_help
+    exit 1
+  }
+  [[ -n "$rationale" ]] || { err "--rationale is required"; print_help; exit 1; }
+  [[ -n "$files" ]] || { err "--files is required"; print_help; exit 1; }
+  [[ -n "$out_of_scope" ]] || { err "--out-of-scope is required"; print_help; exit 1; }
+  [[ -n "$versioning_note" ]] || { err "--versioning is required"; print_help; exit 1; }
+  [[ -n "$governance_note" ]] || { err "--governance is required"; print_help; exit 1; }
+  [[ -n "$validation_note" ]] || { err "--validation is required"; print_help; exit 1; }
 
   require_clean_git "$allow_dirty"
   require_gh
   require_workflow "$wf"
   require_not_main
 
-  local head safe_slug body_file
+  local head body_file safe_scope
   head="$(git rev-parse --abbrev-ref HEAD)"
-  safe_slug="$(slugify "$slug")"
+  if [[ -z "$scope" && -n "$slug" ]]; then
+    scope="$(slugify "$slug")"
+    log "Note: --slug is deprecated for pr-create; use --scope explicitly."
+  fi
+  [[ -n "$scope" ]] || { err "--scope is required"; print_help; exit 1; }
+  safe_scope="$(slugify "$scope")"
 
+  if [[ -z "$type" ]]; then
+    type="$(default_commit_type_for_workflow "$wf")"
+  fi
   if [[ -z "$title" ]]; then
-    title="$(default_pr_title_for "$wf" "$safe_slug")"
+    title="$(default_pr_title_for "$type" "$safe_scope" "$summary")"
+  fi
+  if ! is_conventional_title "$title"; then
+    err "PR title must match Conventional Commits format: <type>(<scope>): <summary>"
+    exit 1
   fi
 
   body_file="$(mktemp)"
   cat > "$body_file" <<EOF_BODY
-## Summary
-- workflow: $wf
-- scope: $safe_slug
+## Rationale
+$rationale
 
-## Checklist
-- [ ] documentation/log updates included where required
-- [ ] no unrelated refactors
-- [ ] governance guardrails respected
+## Scope
+- Workflow: $wf
+- Key files: $files
+- Branch: $head
+
+## Out of scope
+$out_of_scope
+
+## Versioning
+$versioning_note
+
+## Governance
+$governance_note
 
 ## Validation
-- [ ] local checks completed
-- [ ] ready for squash merge
+$validation_note
 EOF_BODY
 
   gh pr create --base "$base" --head "$head" --title "$title" --body-file "$body_file"
@@ -379,9 +420,17 @@ cmd_pr_merge() {
   require_gh
   require_not_main
 
-  gh pr merge --squash --delete-branch
+  local pr_title pr_body
+  pr_title="$(gh pr view --json title --jq .title)"
+  pr_body="$(gh pr view --json body --jq .body)"
+  if [[ -z "$pr_title" || -z "$pr_body" ]]; then
+    err "could not resolve PR title/body for deterministic squash commit."
+    exit 1
+  fi
 
-  log "PR merged with squash and remote branch deletion."
+  gh pr merge --squash --delete-branch --subject "$pr_title" --body "$pr_body"
+
+  log "PR merged with deterministic squash subject/body and remote branch deletion."
   log "Next: $SCRIPT_NAME sync-main"
 }
 

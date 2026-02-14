@@ -106,7 +106,7 @@ Releases optional for PATCH, recommended for MINOR+.
 # 5. Current Repository State
 
 Latest Tag:
-v1.8.5
+v1.8.6
 
 Governance Baseline Includes:
 
@@ -120,6 +120,7 @@ Governance Baseline Includes:
 - LLM-bmad-briefing-template.md repository tree sync
 - Repository governance documentation standardized to English
 - PR helper CLI for standardized workflow execution (branch/commit/PR/merge/sync/tag)
+- Deterministic PR metadata flow (Conventional titles + narrative body + squash subject/body parity)
 - Branch protection enabled
 - PR-based workflow verified
 - CHAT_HANDOVER_PROTOCOL
