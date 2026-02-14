@@ -106,7 +106,7 @@ Releases optional for PATCH, recommended for MINOR+.
 # 5. Current Repository State
 
 Latest Tag:
-v1.8.9
+v1.8.10
 
 Governance Baseline Includes:
 
@@ -124,6 +124,7 @@ Governance Baseline Includes:
 - PR helper usage formally documented in PR_HELPER_GUIDE.md
 - PR helper doctor strengthened with governance PASS/WARN/FAIL validation checks
 - PR helper commit corrected to staged-only behavior with explicit unstaged/no-staged failure conditions
+- PR_HELPER_GUIDE clarified staged-only prerequisites and explicit doctor exit semantics
 - Branch protection enabled
 - PR-based workflow verified
 - CHAT_HANDOVER_PROTOCOL

@@ -148,6 +148,7 @@ Use this section to record changes in chronological order.
 | v1.8.7 | 2026-02-14 | PR_HELPER_GUIDE.md, minor-changes.md, CHAT_HANDOVER_PROTOCOL.md | Added PR helper guide documenting required flags, workflows, narrative PR structure, and troubleshooting. | #<PR> |
 | v1.8.8 | 2026-02-14 | pr-helper.sh, PR_HELPER_GUIDE.md, minor-changes.md, CHAT_HANDOVER_PROTOCOL.md | Extended doctor with governance PASS/WARN/FAIL checks for minor log and handover update conditions. | #<PR> |
 | v1.8.9 | 2026-02-14 | pr-helper.sh, PR_HELPER_GUIDE.md, minor-changes.md, CHAT_HANDOVER_PROTOCOL.md | Corrected commit staged-only behavior; removed implicit staging and added explicit unstaged/no-staged failure messages. | #<PR> |
+| v1.8.10 | 2026-02-14 | PR_HELPER_GUIDE.md, minor-changes.md, CHAT_HANDOVER_PROTOCOL.md | Clarified staged-only prerequisite wording and explicit doctor PASS/WARN/FAIL exit semantics in PR helper documentation. | #<PR> |
 
 
 
