@@ -1,106 +1,106 @@
-# TypeScript Audit Routine (BMAD-konform)
+# TypeScript Audit Routine (BMAD-compliant)
 
-## Zweck
-Das TS-Audit dient der strukturierten Entscheidung,
-ob TypeScript-Fehler als **Minor Changes** behoben werden können
-oder einen **BMAD-Trigger** darstellen (neuer Vertrag / neue Architektur).
+## Purpose
+The TS audit supports a structured decision on
+whether TypeScript errors can be fixed as **Minor Changes**
+or represent a **BMAD trigger** (new contract / new architecture).
 
-Das Audit ist ein **Diagnose-Tool**, kein Pflichtartefakt jedes Features.
-
----
-
-## Standard-Regel
-- **Default-Gate:** `tsc --noEmit` (oder `npm run typecheck`) muss grün sein.
-- Kein Audit-Protokoll bei 0–2 trivialen TS-Fehlern nötig.
+The audit is a **diagnostic tool**, not a mandatory artifact for every feature.
 
 ---
 
-## Wann ein TS-Audit ausführen?
-Führe ein Audit-Script (`ts:audit:*`) aus, wenn mindestens eines zutrifft:
-
-- > 3–5 TS-Fehler gleichzeitig
-- Fehler konzentrieren sich auf:
-  - eine zentrale UI-Komponente (`<critical-ui-file>`)
-  - eine zentrale Domainenheit (`<core-domain-module>`)
-  - Datenfluss-/Mapping-Logik (`<mapping-layer>`)
-  - Historie-/Transaktionslogik (`<history-layer>`)
-- Unsicherheit, ob Fix:
-  - nur Typ-Narrowing ist (**Minor**)
-  - oder einen neuen Vertrag impliziert (**BMAD**)
+## Standard Rule
+- **Default gate:** `tsc --noEmit` (or `npm run typecheck`) must be green.
+- No audit protocol is required for 0–2 trivial TS errors.
 
 ---
 
-## Audit-Output
-Ein Audit erzeugt ein Markdown-Protokoll mit:
+## When to run a TS audit?
+Run an audit script (`ts:audit:*`) when at least one of the following applies:
 
-- TS-Code + Original-Fehlermeldung
-- Datei + Zeile/Spalte
-- Code-Kontext
-- Klassifikation:
+- > 3–5 TS errors at the same time
+- Errors are concentrated in:
+  - a central UI component (`<critical-ui-file>`)
+  - a central domain entity (`<core-domain-module>`)
+  - dataflow/mapping logic (`<mapping-layer>`)
+  - history/transaction logic (`<history-layer>`)
+- Uncertainty whether the fix:
+  - is only type narrowing (**Minor**)
+  - or implies a new contract (**BMAD**)
+
+---
+
+## Audit Output
+An audit produces a Markdown protocol containing:
+
+- TS code + original error message
+- file + line/column
+- code context
+- classification:
   - `MINOR`
   - `BMAD-TRIGGER`
-- Kurze rationale Begründung
-- Fix-Richtung (nicht implementierend)
+- short rationale
+- fix direction (non-implementing)
 
-Beispiel:
-docs/bmad/notes/ts-audits/YYYY-MM-DD-<scope>.md
+Example:
+`docs/bmad/notes/ts-audits/YYYY-MM-DD-<scope>.md`
 
-### Repo-Integration (Template)
-- Standard Script-Datei: `scripts/ts-audit-chart.mjs`
-- Standard Command: `node scripts/ts-audit-chart.mjs --project <project-dir> --target <relative-file>`
-- Optional NPM-Command: `npm run <ts-audit-command>`
+### Repo Integration (Template)
+- Standard script file: `scripts/ts-audit-chart.mjs`
+- Standard command: `node scripts/ts-audit-chart.mjs --project <project-dir> --target <relative-file>`
+- Optional NPM command: `npm run <ts-audit-command>`
 
-Beim Übernehmen dieser Routine in ein anderes Repo:
-- Script-Pfad und NPM-Script mit übernehmen/anpassen
-- Output-Pfad im Guide entsprechend aktualisieren
+When adopting this routine in another repository:
+- carry over/adapt script path and NPM script
+- update output path in the guide accordingly
 
 ---
 
-## Klassifikations-Regeln (Kurzfassung)
+## Classification Rules (Short Form)
 
 ### MINOR
 - null / undefined guards
-- Union-Narrowing
-- Event-, Ref-, Hook-Typen
-- Generics / Imports
-- lokale Prop- oder Callback-Typen
-- Typ-Konsistenz an API-Grenzen (ohne Semantikänderung)
+- union narrowing
+- event, ref, hook types
+- generics / imports
+- local prop or callback types
+- type consistency at API boundaries (without semantic changes)
 
 ### BMAD-TRIGGER
-- neuer persistenter State
-- Änderung von Interaktionsverträgen
-- Änderung zentraler Entitätsbeziehungen
-- Änderungen an Mapping-/Orchestrierungslogik
-- Änderung von Undo/Redo- oder Transaktionssemantik
-- mehrere plausible Architektur-Optionen
+- new persistent state
+- change of interaction contracts
+- change of central entity relationships
+- changes in mapping/orchestration logic
+- change of undo/redo or transaction semantics
+- multiple plausible architecture options
 
-Im Zweifel: **BMAD-TRIGGER**.
-
----
-
-## Versionierung von Audit-Protokollen
-Audit-Protokolle werden **nicht automatisch committed**.
-
-Committe ein Protokoll nur, wenn:
-- ein größerer Fix-Sweep durchgeführt wurde
-- ein BMAD-Trigger dokumentiert wird
-- eine Fix-Entscheidung später nachvollziehbar sein muss
-
-Empfohlenes Naming:
-docs/bmad/notes/ts-audits/YYYY-MM-DD-<scope>.md
+If in doubt: **BMAD-TRIGGER**.
 
 ---
 
-## Definition of Done (für TS-Stabilisierung)
-- `npm run typecheck` ist grün
-- ggf. Audit durchgeführt und ausgewertet
-- alle verbleibenden Fehler bewusst:
-  - gefixt (Minor)
-  - oder dokumentiert (BMAD / Deferred)
+## Versioning of Audit Protocols
+Audit protocols are **not committed automatically**.
+
+Commit a protocol only if:
+- a larger fix sweep was performed
+- a BMAD trigger is documented
+- a fix decision must be traceable later
+
+Recommended naming:
+`docs/bmad/notes/ts-audits/YYYY-MM-DD-<scope>.md`
 
 ---
 
-## Nicht-Ziele
-- Kein Ersatz für BMAD Break/Model/Analyze
-- Kein automatisches Refactoring
-- Kein „Greenwashing“ durch `any` oder TS-Disable
+## Definition of Done (for TS stabilization)
+- `npm run typecheck` is green
+- audit run and evaluated if applicable
+- all remaining errors are consciously:
+  - fixed (Minor)
+  - or documented (BMAD / deferred)
+
+---
+
+## Non-Goals
+- no replacement for BMAD Break/Model/Analyze
+- no automatic refactoring
+- no "greenwashing" via `any` or TS disable
