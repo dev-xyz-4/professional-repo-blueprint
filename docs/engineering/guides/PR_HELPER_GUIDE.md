@@ -16,7 +16,7 @@ Purpose:
 
 Before running helper commands:
 - Run from repository context (the helper resolves repo root automatically)
-- Ensure git working tree is clean (unless explicitly using `--allow-dirty`)
+- Ensure no unstaged changes before `commit` (stage intended files explicitly with `git add`)
 - Ensure `gh` is installed
 - Ensure `gh` is authenticated: `gh auth status`
 - Do not run commit/PR actions from `main`
@@ -118,6 +118,11 @@ Diagnostic levels:
 - `PASS`: governance condition satisfied
 - `WARN`: recommended or contextual check not enforced
 - `FAIL`: required governance condition missing (doctor exits non-zero)
+
+Doctor exit-code semantics:
+- `PASS` only -> exit code `0`
+- `WARN` (with or without `PASS`) -> exit code `0`
+- any `FAIL` present -> exit code non-zero
 
 ---
 
