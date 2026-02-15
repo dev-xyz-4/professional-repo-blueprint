@@ -43,10 +43,10 @@ The Engineering Layer recognizes the following project types:
 
 | Legacy Term | Canonical Term |
 |-------------|----------------|
-| Desktop App | Desktop Application |
-| Web3 App | Web3 / Financial-Sensitive Application |
-| Financial-Critical App | Web3 / Financial-Sensitive Application |
-| Public Web App | Public Web Application |
+| "Desktop App" | Desktop Application |
+| "Web3 App" | Web3 / Financial-Sensitive Application |
+| "Financial-Critical App" | Web3 / Financial-Sensitive Application |
+| "Public Web App" | Public Web Application |
 
 ------------------------------------------------------------------------
 
