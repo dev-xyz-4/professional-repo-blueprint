@@ -25,7 +25,7 @@ Do not encode enforcement logic in this document.
 
 ## 2) Classification
 
-- Project type: `<Local Tool|Desktop App|Public Web App|Web3 App|Financial-Critical App>`
+- Project type: `<Local Tool|Desktop Application|Public Web Application|Web3 / Financial-Sensitive Application>`
 - Selected level: `<Minimal|Standard|Extended>`
 - Rationale: `<why this level is appropriate>`
 - Escalation triggers considered:
