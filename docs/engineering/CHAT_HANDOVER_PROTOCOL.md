@@ -18,7 +18,7 @@ This file must be kept up to date when major governance milestones are reached.
 
 # 1. Repository Purpose
 
-This repository is a **professional governance-first blueprint**.
+This repository is an **Engineering Delivery Blueprint (EDB)**.
 
 It separates three structural layers:
 
@@ -26,7 +26,7 @@ It separates three structural layers:
    → Project identity (scope, risk profile, architecture overview, glossary)
 
 2) docs/bmad  
-   → Feature governance (Break → Model → Analyze → Deliver)  
+   → BMAD-powered delivery operating model (Break → Model → Analyze → Deliver)  
    → Minor vs Feature classification  
    → Commit conventions  
    → CODEX workflow enforcement
@@ -106,7 +106,7 @@ Releases optional for PATCH, recommended for MINOR+.
 # 5. Current Repository State
 
 Latest Tag:
-v1.11.7
+v1.11.8
 
 Governance Baseline Includes:
 
@@ -121,6 +121,7 @@ Governance Baseline Includes:
 - OBSERVABILITY_SCOPE_GUIDE.md
 - GOVERNANCE_MODEL.md
 - ENGINEERING_BASELINE.md
+- ADR-0001-identity.md (EDB identity declaration)
 - BRANCH_WORKFLOW.md
 - testing-strategy.template.md
 - Prompt templates in docs/bmad/templates (*.prompt.md)
