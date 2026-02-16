@@ -9,6 +9,9 @@ Baseline Version: v1.11.7
 
 As of v1.11.7, the Engineering Layer of this repository is declared **Phase 1 Complete**.
 
+Repository identity reference:
+- `docs/_edb-history/ADR-0001-identity.md`
+
 This declaration confirms that:
 
 - All declared governance dimensions are formally defined.
