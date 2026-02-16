@@ -1,4 +1,6 @@
-# CHAT_HANDOVER_PROTOCOL
+# CHAT_HANDOVER_PROTOCOL TEMPLATE
+
+This is a template scaffold. Downstream projects should maintain the live document at `docs/engineering/chat-handover-protocol.md`.
 
 ## Purpose
 
@@ -18,7 +20,7 @@ This file must be kept up to date when major governance milestones are reached.
 
 # 1. Repository Purpose
 
-This repository is an **Engineering Delivery Blueprint (EDB)**.
+This repository is an **<repository-identity>**.
 
 It separates three structural layers:
 
@@ -63,7 +65,7 @@ Used for:
 
 Minor Changes MUST:
 - Go through PR
-- Append entry to docs/bmad/notes/minor-changes.md
+- Append entry to <minor-change-log-path>
 - Not introduce architecture
 - Not expand feature scope
 
@@ -106,37 +108,13 @@ Releases optional for PATCH, recommended for MINOR+.
 # 5. Current Repository State
 
 Latest Tag:
-v1.11.9
+<latest-tag>
 
 Governance Baseline Includes:
 
-- Minor Change governance formalized (policy-backed)
-- Mandatory Minor log enforcement (policy-backed)
-- SECURITY_SCOPE_GUIDE.md
-- security.template.md
-- TESTING_SCOPE_GUIDE.md
-- VERSIONING_GUIDE.md
-- RELEASE_GUIDE.md
-- PERFORMANCE_GUIDE.md
-- OBSERVABILITY_SCOPE_GUIDE.md
-- GOVERNANCE_MODEL.md
-- ENGINEERING_BASELINE.md
-- ADR-0001-identity.md (EDB identity declaration)
-- BRANCH_WORKFLOW.md
-- testing-strategy.template.md
-- Prompt templates in docs/bmad/templates (*.prompt.md)
-- adr.template.md
-- LLM-bmad-briefing-template.md repository tree sync
-- Repository governance documentation standardized to English
-- PR helper CLI for standardized workflow execution (branch/commit/PR/merge/sync/tag)
-- Deterministic PR metadata flow (Conventional titles + narrative body + squash subject/body parity)
-- PR helper usage formally documented in PR_HELPER_GUIDE.md
-- PR helper doctor strengthened with governance PASS/WARN/FAIL validation checks
-- PR helper commit corrected to staged-only behavior with explicit unstaged/no-staged failure conditions
-- PR_HELPER_GUIDE clarified staged-only prerequisites and explicit doctor exit semantics
-- Branch protection enabled
-- PR-based workflow verified
-- CHAT_HANDOVER_PROTOCOL
+- <baseline-item-1>
+- <baseline-item-2>
+- <baseline-item-3>
 
 Minor Change log is complete and enforced.
 
@@ -147,10 +125,9 @@ Minor Change log is complete and enforced.
 <UPDATE THIS SECTION BEFORE STARTING A NEW CHAT>
 
 Example:
-- Introduce VERSIONING_GUIDE
-- Introduce release.template.md
-- Expand ADR governance
-- Define CI minimal governance layer
+- <next-target-1>
+- <next-target-2>
+- <next-target-3>
 
 ---
 

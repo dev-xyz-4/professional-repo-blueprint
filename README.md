@@ -23,8 +23,11 @@ EDB is built to support professional-grade development processes and to prevent 
 ## Repository Structure
 
 docs/
-  00-project/   → Project identity and instance-level documentation
-  bmad/         → BMAD operating model and delivery workflow
-  engineering/  → Engineering governance baseline and quality guides
+  00-project/                → Project identity and instance-level documentation
+  bmad/                      → BMAD operating model and delivery workflow
+  engineering/               → Engineering governance baseline and quality guides
+  _edb-development-history/  → EDB self-history (blueprint development only)
+
+
 
 See **Releases** for version history.

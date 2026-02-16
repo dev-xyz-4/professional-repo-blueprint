@@ -110,9 +110,9 @@ scripts/quality/pr-helper.sh doctor --workflow minor-change --tag vX.Y.Z
 
 Checks performed:
 - For `--workflow minor-change`:
-  - Verifies `docs/bmad/notes/minor-changes.md` is modified/staged.
-- If `--tag` is provided or a version bump is detected in `minor-changes.md`:
-  - Verifies `docs/engineering/CHAT_HANDOVER_PROTOCOL.md` is modified.
+  - Verifies `docs/bmad/notes/minor-change-log.md` is modified/staged.
+- If `--tag` is provided or a version bump is detected in `docs/bmad/notes/minor-change-log.md`:
+  - Verifies `docs/engineering/chat-handover-protocol.md` is modified.
 
 Diagnostic levels:
 - `PASS`: governance condition satisfied
@@ -151,7 +151,7 @@ Notes:
 scripts/quality/pr-helper.sh branch --workflow minor-change --slug handover-baseline-sync
 
 # 2) Stage intended files
-git add docs/engineering/CHAT_HANDOVER_PROTOCOL.md docs/bmad/notes/minor-changes.md
+git add docs/engineering/chat-handover-protocol.md docs/bmad/notes/minor-change-log.md
 
 # 3) Commit (staged-only)
 scripts/quality/pr-helper.sh commit --workflow minor-change --subject "sync handover baseline"
@@ -166,7 +166,7 @@ scripts/quality/pr-helper.sh pr-create \
   --scope governance \
   --summary "align handover baseline with latest patch state" \
   --rationale "prevent drift between handover protocol and minor-change log" \
-  --files "docs/engineering/CHAT_HANDOVER_PROTOCOL.md,docs/bmad/notes/minor-changes.md" \
+  --files "docs/engineering/chat-handover-protocol.md,docs/bmad/notes/minor-change-log.md" \
   --out-of-scope "no governance policy changes" \
   --versioning "PATCH expected: documentation hygiene" \
   --governance "minor log and handover updates included" \
@@ -266,9 +266,9 @@ Resolution:
 
 ### Governance check failures (doctor)
 Error patterns:
-- `FAIL: minor-change workflow: docs/bmad/notes/minor-changes.md is not modified/staged`
-- `FAIL: planned tag ... requires docs/engineering/CHAT_HANDOVER_PROTOCOL.md modification`
-- `FAIL: detected version bump requires docs/engineering/CHAT_HANDOVER_PROTOCOL.md modification`
+- `FAIL: minor-change workflow: docs/bmad/notes/minor-change-log.md is not modified/staged`
+- `FAIL: planned tag ... requires docs/engineering/chat-handover-protocol.md modification`
+- `FAIL: detected version bump requires docs/engineering/chat-handover-protocol.md modification`
 
 Resolution:
 - Update required governance documents before `pr-create`.
