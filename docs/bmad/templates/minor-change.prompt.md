@@ -25,9 +25,8 @@ Rules:
 - Do not introduce new features or architecture.
 - Do not refactor unrelated files.
 - Preserve behavior outside this fix.
-- Append a mandatory entry to docs/bmad/notes/minor-change-log.md.
-- If version changes or governance baseline changes, update:
-  - docs/engineering/chat-handover-protocol.md (Latest Tag and Governance Baseline Includes section).
+- Append a mandatory entry to the canonical Minor Change log according to the active mode (see CODEX_ENTRY.md).
+- If version changes or governance baseline changes, update the canonical chat-handover document according to the active mode (see CODEX_ENTRY.md).
 - If repository structure or workflow templates are affected, update:
   - docs/bmad/notes/LLM-bmad-briefing-template.md (Repro structure / Feature status sections) as needed.
 
@@ -43,7 +42,7 @@ Validation:
 - <validation-step-1>
 - <validation-step-2>
 - <regression-check-1>
-- docs/bmad/notes/minor-change-log.md contains a new log entry.
+- The canonical Minor Change log (per active mode) contains a new log entry.
 - Required governance documents updated if applicable.
 
 ```
