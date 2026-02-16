@@ -72,9 +72,9 @@ Rules (strict):
 - Do not add architecture decisions not documented in BMAD artifacts.
 - Do not refactor unrelated code.
 - Do not degrade performance characteristics defined in deliver acceptance criteria.
-- Append a mandatory entry to docs/bmad/notes/minor-changes.md for any Minor adjustments done as part of this implementation (docs/process hygiene only).
+- Append a mandatory entry to docs/bmad/notes/minor-change-log.md for any Minor adjustments done as part of this implementation (docs/process hygiene only).
 - If version changes or governance baseline changes, update:
-  - docs/engineering/CHAT_HANDOVER_PROTOCOL.md (Latest Tag and Governance Baseline Includes section).
+  - docs/engineering/chat-handover-protocol.md (Latest Tag and Governance Baseline Includes section).
 - If repository structure or workflow templates are affected, update:
   - docs/bmad/notes/LLM-bmad-briefing-template.md (Repro structure / Feature status sections) as needed.
 

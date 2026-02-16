@@ -1,16 +1,16 @@
 # ENGINEERING GOVERNANCE BASELINE
 
-Generated on: 2026-02-15  
-Baseline Version: v1.11.7  
+Generated on: <YYYY-MM-DD>  
+Baseline Version: <vX.Y.Z>  
 
 ---
 
 ## Phase 1 — Engineering Layer Structurally Complete
 
-As of v1.11.7, the Engineering Layer of this repository is declared **Phase 1 Complete**.
+As of <vX.Y.Z>, the Engineering Layer of this repository is declared **Phase 1 Complete**.
 
 Repository identity reference:
-- `docs/_edb-history/ADR-0001-identity.md`
+- `<identity-adr-path>`
 
 This declaration confirms that:
 
@@ -27,17 +27,10 @@ This declaration confirms that:
 
 The Phase-1 Engineering Governance Baseline includes:
 
-- VERSIONING_GUIDE
-- RELEASE_GUIDE
-- SECURITY_SCOPE_GUIDE
-- TESTING_SCOPE_GUIDE
-- PERFORMANCE_GUIDE
-- OBSERVABILITY_SCOPE_GUIDE
-- PROJECT_CLASSIFICATION
-- GOVERNANCE_MODEL
-- BRANCH_WORKFLOW
-- PR_HELPER_GUIDE
-- ADR template
+- <dimension-1>
+- <dimension-2>
+- <dimension-3>
+- <dimension-4>
 
 All above components are formally versioned and aligned.
 
@@ -64,7 +57,7 @@ Future changes are considered controlled expansions or refinements.
 
 ## Governance Stability Commitment
 
-From v1.11.7 onward:
+From <vX.Y.Z> onward:
 
 - New governance guides require explicit justification.
 - Normative model changes require deliberate version classification.
@@ -74,4 +67,4 @@ From v1.11.7 onward:
 
 ## Version
 
-Initial baseline declaration established at v1.11.7.
+Initial baseline declaration established at <vX.Y.Z>.

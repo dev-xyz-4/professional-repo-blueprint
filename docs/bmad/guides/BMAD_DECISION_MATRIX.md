@@ -50,7 +50,7 @@ Choose **Minor Change** if **all** of the following are true:
 - Reason is obvious (bugfix, cleanup, small refactor)
 
 **Required output:**
-docs/bmad/notes/minor-changes.md
+docs/bmad/notes/minor-change-log.md
 
 ---
 

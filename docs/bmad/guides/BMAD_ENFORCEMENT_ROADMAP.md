@@ -46,7 +46,7 @@ This level is required before any technical enforcement is added.
 Typical checks:
 - Commit message matches allowed prefixes
 - `feat(<feature>)` commits reference an existing feature folder
-- `minor(...)` commits require an entry in `notes/minor-changes.md`
+- `minor(...)` commits require an entry in `docs/bmad/notes/minor-change-log.md`
 
 Characteristics:
 - Local only

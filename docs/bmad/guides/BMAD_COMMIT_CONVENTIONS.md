@@ -57,7 +57,7 @@ minor(refactor): simplify request validation helper
 minor(perf): reduce repeated list re-rendering
 
 Requirements:
-- Entry must be added to `docs/bmad/notes/minor-changes.md`
+- Entry must be added to `docs/bmad/notes/minor-change-log.md`
 - No BMAD feature docs are created
 - No new abstractions introduced
 
@@ -78,7 +78,7 @@ feat(<feature-name>): implement according to deliver spec
 
 minor(refactor): clean up shared module utils
 
-- update docs/bmad/notes/minor-changes.md
+- update docs/bmad/notes/minor-change-log.md
 - refactor src/<module>/utils.ts
 
 ---

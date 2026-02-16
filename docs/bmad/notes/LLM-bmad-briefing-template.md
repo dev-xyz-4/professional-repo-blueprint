@@ -49,11 +49,11 @@ docs/
       model.template.md
       analyze.template.md
       deliver.template.md
+      minor-change-log.template.md
       minor-change.prompt.md
       feature-implementation.prompt.md
       documentation-only.prompt.md
     notes/
-      minor-changes.md
       open-questions.md
       rejected-approaches.md
       decisions-log.md
@@ -69,13 +69,20 @@ docs/
         04-deliver.md
         questions.md
 
+  _edb-development-history/
+    ADR-0001-identity.md
+    EDB_ENGINEERING_BASELINE.md
+    EDB_CHAT_HANDOVER_PROTOCOL.md
+    EDB_MINOR_CHANGE_LOG.md
+
   engineering/
-    CHAT_HANDOVER_PROTOCOL.md
     guides/
       SECURITY_SCOPE_GUIDE.md
       TESTING_SCOPE_GUIDE.md
       <additional-guides>.md
     templates/
+      chat-handover.template.md
+      engineering-baseline.template.md
       security.template.md
       testing-strategy.template.md
       <additional-templates>.md
@@ -89,11 +96,11 @@ docs/
     behavior.
 -   `CODEX_ENTRY.md` acts as the router/entry point.
 -   Minor Changes must be documented in
-    `docs/bmad/notes/minor-changes.md`.
+    `docs/bmad/notes/minor-change-log.md`.
 -   Minor Changes MUST append an entry to
-    `docs/bmad/notes/minor-changes.md`.
+    `docs/bmad/notes/minor-change-log.md`.
 -   If version or governance baseline changes,
-    `docs/engineering/CHAT_HANDOVER_PROTOCOL.md` must be updated.
+    `docs/engineering/chat-handover-protocol.md` must be updated.
 -   New structure, new contracts, or new system decisions require a BMAD
     Feature process.
 

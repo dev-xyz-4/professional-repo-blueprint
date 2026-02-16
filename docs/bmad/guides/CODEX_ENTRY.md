@@ -35,7 +35,10 @@ If classified as BMAD Feature:
 - Work in `docs/bmad/features/<feature-name>/`.
 
 If classified as Minor Change:
-- Update `docs/bmad/notes/minor-changes.md`.
+- Update `docs/bmad/notes/minor-change-log.md`.
+
+Guides and prompts route to downstream live documents.
+`docs/_edb-development-history/` is blueprint-only self-history.
 
 ---
 
